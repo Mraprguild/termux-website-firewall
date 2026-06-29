@@ -1,0 +1,40 @@
+# Real website/backend address
+upstream: "http://127.0.0.1:8000"
+
+# Firewall listen address
+listen_host: "0.0.0.0"
+listen_port: 8080
+
+# Security limits
+max_body_bytes: 2097152
+rate_limit_requests: 80
+rate_limit_seconds: 60
+
+# Proxy settings
+proxy_timeout_seconds: 20
+
+# Enable/disable modules
+modules:
+  sql_injection: true
+  xss: true
+  path_traversal: true
+  command_injection: true
+  bad_bots: true
+  rate_limit: true
+  block_sensitive_paths: true
+
+# Block these paths completely
+blocked_paths:
+  - "/.env"
+  - "/wp-config.php"
+  - "/config.php"
+  - "/backup.zip"
+  - "/database.sql"
+  - "/phpmyadmin"
+  - "/xmlrpc.php"
+
+# Add custom regex rules here
+custom_block_regex:
+  - "(?i)\\.git"
+  - "(?i)\\.svn"
+  - "(?i)id_rsa"

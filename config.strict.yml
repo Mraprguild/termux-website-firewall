@@ -1,0 +1,43 @@
+# Strict security example for small websites
+upstream: "http://127.0.0.1:8000"
+
+listen_host: "0.0.0.0"
+listen_port: 8080
+
+max_body_bytes: 1048576
+rate_limit_requests: 30
+rate_limit_seconds: 60
+proxy_timeout_seconds: 15
+
+modules:
+  sql_injection: true
+  xss: true
+  path_traversal: true
+  command_injection: true
+  bad_bots: true
+  rate_limit: true
+  block_sensitive_paths: true
+
+blocked_paths:
+  - "/.env"
+  - "/wp-config.php"
+  - "/config.php"
+  - "/backup.zip"
+  - "/database.sql"
+  - "/phpmyadmin"
+  - "/xmlrpc.php"
+  - "/readme.html"
+  - "/license.txt"
+  - "/wp-admin/install.php"
+  - "/wp-admin/setup-config.php"
+
+custom_block_regex:
+  - "(?i)\\.git"
+  - "(?i)\\.svn"
+  - "(?i)id_rsa"
+  - "(?i)composer\\.json"
+  - "(?i)composer\\.lock"
+  - "(?i)package-lock\\.json"
+  - "(?i)yarn\\.lock"
+  - "(?i)\\.sql(\\?|$)"
+  - "(?i)backup.*\\.zip"
