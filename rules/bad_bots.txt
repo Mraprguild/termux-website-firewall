@@ -1,0 +1,14 @@
+# One keyword per line
+# Default high-risk scanner tools.
+# curl/wget are not blocked by default because they are useful for local testing.
+sqlmap
+nikto
+acunetix
+nessus
+masscan
+nmap
+dirbuster
+gobuster
+ffuf
+wpscan
+zgrab
